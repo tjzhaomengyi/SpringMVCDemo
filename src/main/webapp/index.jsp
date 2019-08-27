@@ -46,6 +46,24 @@
 
 
 <a href="SpringMVCHandler/testRequestHeader">testRequestheader</a>
+<a href="SpringMVCHandler/testCookieValue">testCookieValue</a>
+
+<form action="SpringMVCHandler/testObjectProperties" method="get">
+    id:<input name="id" type="text">
+    name:<input name="name" type="text">
+    home:<input name="address.homeAddress" type="text">
+    school:<input name="address.schoolAddress" type="text">
+    <input type="submit" value="查">
+</form>
+
+
+<form action="SpringMVCHandler/testServletAPI" method="get">
+    id:<input name="id" type="text">
+    name:<input name="name" type="text">
+    home:<input name="address.homeAddress" type="text">
+    school:<input name="address.schoolAddress" type="text">
+    <input type="submit" value="查">
+</form>
 
 </body>
 </html>

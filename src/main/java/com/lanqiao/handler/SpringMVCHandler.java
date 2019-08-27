@@ -1,7 +1,11 @@
 package com.lanqiao.handler;
 
+import com.lanqiao.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Auther: zhaomengyi
@@ -75,5 +79,29 @@ public class SpringMVCHandler {
         System.out.println("语言参数：" + language);
         return "success";
     }
+
+    @RequestMapping(value = "testCookieValue")
+    public String testCookieValue(@CookieValue("JSESSIONID") String jsessionid){
+        System.out.println("JSession：" + jsessionid);
+        return "success";
+    }
+
+    @RequestMapping(value = "testObjectProperties")
+    public String testObjectProperties(Student student){
+        //Student属性必须和form表单中的name属性一直
+        System.out.println(student);
+        return "success";
+    }
+
+    @RequestMapping("testServletAPI")
+    public String testServletAPI(HttpServletRequest request, HttpServletResponse response){
+        String name = request.getParameter("name");
+        System.out.println(name);
+        return "success";
+    }
+
+
+
+
 }
 
