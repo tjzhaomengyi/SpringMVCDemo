@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="/SpringMVCHandler/welcome/abc">first springmvc -welcome</a>
+    <a href="/SpringMVCHandler/welcome/abc">first springmvc -welcome success</a>
 </body>
 </html>
