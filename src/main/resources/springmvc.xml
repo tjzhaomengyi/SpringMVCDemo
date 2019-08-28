@@ -10,5 +10,33 @@
     <property name="prefix" value="/WEB-INF/view/"></property>
     <property name="suffix" value=".jsp"></property>
     </bean>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="i18n"></property>
+    </bean>
     
+    <mvc:view-controller path="SpringMVCHandler/testMvcViewController" view-name="success"></mvc:view-controller>
+
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+<!--1将自定义转换器放入SpringIOC容器-->
+    <bean id = "myConverter" class="com.lanqiao.converter.MyConverter"></bean>
+<!-- 2、将myConverter放入SpringMVC提供的转换器Bean中   -->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <ref bean="myConverter"></ref>
+            </set>
+        </property>
+    </bean>
+<!--    3、将conversionService注册到annotation-driven中-->
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+
+    <bean id="formatService" class="org.springframework.format.support.DefaultFormattingConversionService">
+    </bean>
+
+    <mvc:annotation-driven conversion-service="formatService"></mvc:annotation-driven>
+
 </beans>

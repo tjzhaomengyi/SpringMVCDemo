@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
     <title>Title</title>
@@ -64,6 +65,39 @@
     school:<input name="address.schoolAddress" type="text">
     <input type="submit" value="查">
 </form>
+
+<a href="SpringMVCHandler/testModelAndView">testModelAndView</a>
+<a href="SpringMVCHandler/testModelMap">testModelMap</a>
+<a href="SpringMVCHandler/testMap">testMap</a>
+<a href="SpringMVCHandler/testModel">testModel</a>
+
+<br/>
+
+<form action="SpringMVCHandler/testModelAttribute" method="get">
+    id:<input name="id" type="hiden" value="31">
+    name:<input name="name" type="text">
+    <input type="submit" value="修改">
+</form>
+
+<a href="SpringMVCHandler/testI18n">国际化</a>
+
+<br/>
+<a href="SpringMVCHandler/testMvcViewController">直接跳转</a>
+
+
+<form action="SpringMVCHandler/testConverter" method="post">
+    学生信息：<input name="studentInfo" type="text" >
+    <input type="submit" value="转换">
+</form>
+
+<form action="SpringMVCHandler/testDateFormat" method="post ">
+    id:<input name="id" type="text">
+    name:<input name="name" type="text">
+    age:<input name="age" type="text">
+    birth:<input name="birthday" type="text">
+    <input type="submit" value="查">
+</form>
+
 
 </body>
 </html>
