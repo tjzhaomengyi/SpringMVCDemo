@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Title</title>
@@ -25,6 +26,11 @@ ${sessionScope.student4.id} -${sessionScope.student4.name} </br>
 
 <fmt:message key="resource.exist"></fmt:message>
 <fmt:message key="resource.welcome"></fmt:message>
+
+
+<c:forEach items="${requestScope.errors}" var="error">
+    ${error.getDefaultMessage()}、
+</c:forEach>
 
 </body>
 </html>

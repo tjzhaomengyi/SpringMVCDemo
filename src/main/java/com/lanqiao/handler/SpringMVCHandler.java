@@ -193,11 +193,13 @@ public class SpringMVCHandler {
     //日期格式转换
     //类型转换
     @RequestMapping("testDateFormat")
-    public String testDateFormat(Student student, BindingResult result){
+    public String testDateFormat(Student student, BindingResult result,Map<String,Object> map){
         System.out.println(student.getBirthday());
         if(result.getErrorCount() > 0 ){
             for(FieldError error:result.getFieldErrors()){
                 System.out.println(error.getDefaultMessage());
+
+                map.put("errors",result.getFieldErrors());//将错误信息放入request域中
             }
         }
         return "success";
