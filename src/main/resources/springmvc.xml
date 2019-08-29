@@ -39,4 +39,29 @@
 
     <mvc:annotation-driven conversion-service="formatService"></mvc:annotation-driven>
 
+
+<!--    用于实现文件上传,id要固定-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <property name="maxUploadSize" value="102400"></property>
+<!--        <property name="maxInMemorySize" value=""-->
+    </bean>
+
+
+<!--    配置拦截器-->
+    <mvc:interceptors>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/SpringMVCHandler/testUpload"/>
+            <bean class="com.lanqiao.interceptor.MyInterceptor"></bean>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/SpringMVCHandler/testUpload"/>
+            <bean class="com.lanqiao.interceptor.MySecondInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

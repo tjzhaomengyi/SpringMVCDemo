@@ -1,8 +1,10 @@
 package com.lanqiao.entity;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
+import javax.validation.constraints.Past;
 import java.util.Date;
 
 public class Student {
@@ -10,10 +12,12 @@ public class Student {
     private int id;
     private String name;
     private Integer age;
+    @Past//当前时间以前
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private Address address;
-
+    @Email
+    private String Email;
 
     public int getId() {
         return id;
@@ -54,14 +58,23 @@ public class Student {
         this.address = address;
     }
 
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", birthday=" + birthday +
                 ", address=" + address +
-                ", birth=" + birthday.toString() +
+                ", Email='" + Email + '\'' +
                 '}';
     }
 }

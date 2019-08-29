@@ -1,5 +1,6 @@
 package com.lanqiao.handler;
 
+import com.lanqiao.entity.SimpleStudent;
 import com.lanqiao.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,10 +8,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -193,7 +202,7 @@ public class SpringMVCHandler {
     //日期格式转换
     //类型转换
     @RequestMapping("testDateFormat")
-    public String testDateFormat(Student student, BindingResult result,Map<String,Object> map){
+    public String testDateFormat(@Valid Student student, BindingResult result, Map<String,Object> map){
         System.out.println(student.getBirthday());
         if(result.getErrorCount() > 0 ){
             for(FieldError error:result.getFieldErrors()){
@@ -204,5 +213,51 @@ public class SpringMVCHandler {
         }
         return "success";
     }
+
+    @ResponseBody //告诉springmvc此时的返回不是一个view页面而是一个ajax调用的返回值,是json数组
+    @RequestMapping("testJson")
+    public List<SimpleStudent> testJson(){
+        //Controller调用service再调Dao
+        //StudentService studentService = new StudentServiceImpl();
+        //List<Student> students = studentService.queryAllStudent();
+        //模拟调用service的查询操作
+        List<SimpleStudent> students = new ArrayList<SimpleStudent>();
+        SimpleStudent stu1 = new SimpleStudent(1,"zs",23);
+        SimpleStudent stu2 = new SimpleStudent(2,"ls",24);
+        SimpleStudent stu3 = new SimpleStudent(3,"ww",25);
+
+        students.add(stu1);
+        students.add(stu2);
+        students.add(stu3);
+        return students;
+    }
+
+    //处理文件上传
+    @RequestMapping("testUpload")
+    public String testUpload(@RequestParam("desc") String desc, @RequestParam("file") MultipartFile file){
+        System.out.print("文件描述信息"+desc);
+        //将文件上传到服务器中
+        try {
+            InputStream input = file.getInputStream();
+            OutputStream output = new FileOutputStream("./1.txt");//默认路径在tomcat/bin下面
+            byte[] bs = new byte[1024];
+            int len = -1;
+            while((len = input.read(bs))!=-1){
+                output.write(bs,0,len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("上传成功");
+        return "success";
+    }
+
+    @RequestMapping("testInterceptor")
+    public String testUpload(){
+        System.out.println("处理请求");
+        return "success";
+    }
+
+
 }
 

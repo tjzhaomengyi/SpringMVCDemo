@@ -10,6 +10,26 @@
 <html>
 <head>
     <title>Title</title>
+<%--    <script type="text/javascript" src="WEB-INF/statics/js/jquery.js"></script>--%>
+    <script src="https://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#testJson").click(function() {
+               //通过ajax请求Springmvc
+               $.post(
+                   "SpringMVCHandler/testJson",//服务器地址，请求SpringMVCHandler的服务
+                   // {"name":"zs","age":23}//请求并带参数
+                   function(result){//服务端处理完的回调函数,接收返回handler中的Students
+                         for(i=0;i<result.length;i++){
+                           alert(result[i].id + "-"+ result[i].age+"-"+result[i].name)
+                         }
+                   }
+               )
+            });
+        });
+
+    </script>
 </head>
 <body>
 <a href="SpringMVCHandler/welcome">first springmvc -welcome</a>
@@ -90,14 +110,30 @@
     <input type="submit" value="转换">
 </form>
 
-<form action="SpringMVCHandler/testDateFormat" method="post ">
+<form action="SpringMVCHandler/testDateFormat" method="post">
     id:<input name="id" type="text">
     name:<input name="name" type="text">
     age:<input name="age" type="text">
     birth:<input name="birthday" type="text">
+    email:<input name="email" type="text">
     <input type="submit" value="查">
 </form>
 
+<input type="button" value="testJson" id="testJson">
+
+<br/>
+<br/>
+
+<form action="SpringMVCHandler/testUpload" method="post" enctype="multipart/form-data">
+    <input name="file" type="file"/>
+    描述：<input name="desc" type="text"/>
+    <input type="submit" value="上传"/>
+</form>
+
+<br/>
+<a href="SpringMVCHandler/testInterceptor">testInterceptor</a>
+
+<a href="second/testException">testException</a>
 
 </body>
 </html>
