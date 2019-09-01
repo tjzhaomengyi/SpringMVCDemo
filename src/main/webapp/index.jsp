@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -133,7 +136,9 @@
 <br/>
 <a href="SpringMVCHandler/testInterceptor">testInterceptor</a>
 
-<a href="second/testException">testException</a>
+<a href="second/testException">testException</a> </br>
+
+
 
 </body>
 </html>
