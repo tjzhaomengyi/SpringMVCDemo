@@ -19,5 +19,24 @@
         年龄:<form:input path="age"/><br/>
         <input type="submit" value="提交"/>
     </form:form>
+
+<br/>
+<form:form action="FormDemo/testMethod" method="post">
+<input type="submit" value="增">
+</form:form>
+
+    <form:form action="FormDemo/testMethod" method="delete">
+        <input type="submit" value="删">
+    </form:form>
+
+    <form:form action="FormDemo/testMethod" method="put">
+        <input type="submit" value="改">
+    </form:form>
+
+    <form:form action="FormDemo/testMethod" method="get">
+        <input type="submit" value="查">
+    </form:form>
+
+
 </body>
 </html>

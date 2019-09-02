@@ -46,7 +46,7 @@
     <filter>
         <filter-name>HiddenHttpMethodFilter</filter-name>
         <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
-        <!--    <init-param>-->
+        <!--    <init-param>这个是改名字-->
         <!--      <param-name>methodParam</param-name>-->
         <!--      <param-value>requestMethod</param-value>-->
         <!--    </init-param>-->

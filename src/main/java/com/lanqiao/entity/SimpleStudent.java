@@ -9,7 +9,15 @@ public class SimpleStudent {
     private int id;
     private String name;
     private int age;
+    private boolean sex;
 
+    public boolean isSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
 
     public SimpleStudent() {
     }
